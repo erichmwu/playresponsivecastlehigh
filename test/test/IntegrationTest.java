@@ -24,10 +24,20 @@ public class IntegrationTest {
     running(testServer(3333, fakeApplication(inMemoryDatabase())), HTMLUNIT, new Callback<TestBrowser>() {
       public void invoke(TestBrowser browser) {
         browser.goTo("http://localhost:3333");
-        assertThat(browser.pageSource()).contains("home page");
+        assertThat(browser.pageSource()).contains("Welcome to Castle High School");
 
-        browser.goTo("http://localhost:3333/page1");
-        assertThat(browser.pageSource()).contains("Page1");
+        browser.goTo("http://localhost:3333/studentsparents");
+        assertThat(browser.pageSource()).contains("Academic Resources / Student Life / School Services");
+
+        browser.goTo("http://localhost:3333/facultystaff");
+        assertThat(browser.pageSource()).contains("Resources / School Services");
+
+        browser.goTo("http://localhost:3333/alumni");
+        assertThat(browser.pageSource()).contains("Welcome Castle High School Alumni and Friends!");
+
+        browser.goTo("http://localhost:3333/contact");
+        assertThat(browser.pageSource()).contains("45-386 Kaneohe Bay Drive");
+
       }
     });
   }
